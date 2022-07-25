@@ -1,0 +1,85 @@
+{% extends "index.html" %} {% block title %}Kunde bearbeiten{% endblock %}{% block header %}Kunde bearbeiten:&#160;&#160;{{ kunde_firstName }}&#160;{{ kunde_lastName }} {% endblock %}
+
+{% block content %}
+<style>
+        .anlegen-btn {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: rgba(31, 147, 255, 0);
+            border-radius: 1px;
+            color: rgb(31, 147, 255);
+            border-width: 1px;
+            padding: 10px;
+            border-color: rgb(31, 147, 255);
+            border-style: solid;
+            cursor: pointer;
+            font-weight: bold;
+            margin-right: 10px;
+            padding-left:20px;
+            padding-right:20px;
+            transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+              transition-property: color, background-color, border-color, box-shadow;
+              transition-duration: 0.15s, 0.15s, 0.15s, 0.15s;
+              transition-timing-function: ease-in-out, ease-in-out, ease-in-out, ease-in-out;
+              transition-delay: 0s, 0s, 0s, 0s;
+  }
+
+        .anlegen-btn:hover {
+            background-color: rgba(31, 147, 255, 1);
+            color: white;
+            box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+  }
+</style>
+
+<form method="POST" style="margin-top:150px;">
+  <div style="margin-top:50px;" class="form-group">
+    <label for="email">Email Addresse</label>
+    <input
+      type="email"
+      class="form-control"
+      id="email"
+      name="email"
+      placeholder="abc@beispiel.com"
+      value="{{ kunde_email }}"
+    />
+  </div>
+  <div class="form-group">
+    <label for="firstName">Vorname</label>
+    <input
+      type="text"
+      class="form-control"
+      id="firstName"
+      name="firstName"
+      placeholder="Vorname"
+      value="{{ kunde_firstName }}"
+    />
+  </div>
+  <div class="form-group">
+    <label for="lastName">Nachname</label>
+    <input
+      type="text"
+      class="form-control"
+      id="lastName"
+      name="lastName"
+      placeholder="Nachname"
+      value="{{ kunde_lastName }}"
+    />
+  </div>
+  <div class="form-group">
+    <label for="birthDate">Geburtsdatum</label>
+    <input
+      type="date"
+      class="form-control"
+      id="birthDate"
+      name="birthDate"
+      placeholder="dd.mm.yyyy"
+      value="{{ kunde_birthDate }}"
+    />
+  </div>
+  <br />
+  <form method="POST" id="save_btn" action="{{ url_for('views.kunde_bearbeiten') }}">
+      <button  type="submit" class="anlegen-btn" name="save" value="{{ kunde_id }}">Änderungen speichern</button>
+    </form>
+</form>
+
+{% endblock %}

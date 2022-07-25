@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+            crossorigin="anonymous"
+    />
+    <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+            crossorigin="anonymous"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+    <style>
+
+
+        body{
+            background-color:rgba(0, 0, 0, 0);
+        }
+        .nav-link-custom {
+            color: rgb(0, 0, 0);
+            pointer-events: unset;
+            object-position:right;
+        }
+
+        nav-link-custom a:hover:not(.active) {
+            color: white;
+            opacity: 0.7;
+            cursor: pointer;
+            text-decoration: none;
+
+        }
+
+        .navbar-custom{
+            position:fixed;
+            top:0px;
+            width:100%;
+            background:white;
+            padding-bottom: 30px;
+            align-content: center;
+            box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.7);
+            transition:box-shadow 0.1s ease-in-out;
+        }
+        .navbar-custom:hover {
+            box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.7);
+        }
+
+        .search-btn {
+            width:40px;
+            vertical-align:bottom;
+            transition: all 0.3s;
+        }
+        .search-btn:hover {
+            margin-bottom:4px;
+        }
+        span.svg {
+            background:
+            <img src="https://img.icons8.com/fluency-systems-regular/48/000000/search-client.png"/>
+            background-size: contain;
+            cursor: pointer;
+            display: inline-block;
+            height: 52px;
+            width: 40px;
+}
+        }
+        #search-btn{
+        width:20px;
+        }
+
+        .alert-success-custom {
+            .border-style:solid;
+            .border-width:2px;
+            .border-color:black;
+        }
+
+        .alert-danger-custom {
+
+        }
+
+        .nav-btns {
+            width:400px;
+            position:absolute;right:20px;top:30px;
+        }
+
+        .search-bar-custom {
+            transition: box-shadow 0.1s ease-in-out;
+            border-radius:26px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+            margin-right:5px;
+            border-width:0px;
+            margin-left:5px;
+            width:300px;
+            margin-top: 0px;
+            align-self:center;
+            background-color: rgba(0, 0, 0, 0);
+            color:black;
+            padding:6px;
+            padding-left:15px;
+            margin-right;50px;
+            transition:all 0.15s ease-in-out;
+
+
+        }
+
+        .search-bar-custom:focus {
+            border:none;
+            outline:none;
+            background-color: rgba(0, 0, 0, 0.05);
+
+        }
+
+        .container-search {
+            position:absolute;left:40%;top:0%;
+            width:450px;
+            height:70px;
+            margin:0 auto;
+        }
+
+        .arrow {
+            background:
+            <img src="https://img.icons8.com/ios/50/000000/expand-arrow--v1.png"/>
+            background-size: contain;
+            cursor: pointer;
+            display: inline-block;
+            height: 20px;
+            width: 20px;
+            margin-top:0px;
+            transform: rotate(90deg);
+        }
+        .dropdown-arrow {
+            width:15px;
+            transform: rotate(270deg);
+            margin-left: 5px;
+            position: absolute;right:8%;top:14.5%;
+            transition: all 0.1s ease-in-out;
+        }
+        .dropdown-arrow:hover {
+            transform: rotate(360deg);
+        }
+
+        .dropdown-div {
+            width:55px;
+            height:20px;
+            position:absolute;right:18%;top:20%;
+            display:flex;
+            background-color:rgba(0,0,0,1)
+            z-index: 1;
+            padding-top:0px;
+            margin-bottom:-4px;
+
+
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;right:-160%;top:120%;
+            background-color: rgba(255,255,255,1);
+            width:150px;
+            min-height:140px;
+            z-index: 1;
+            border-radius: 0px 0px 0px 0px;
+            box-shadow: 0px 3px 5px rgba(0,0,0,0.5);
+            transition:all 0.3s ease-in-out;
+
+        }
+        .dropdown-content a {
+            color:black;
+            padding:16px 12px;
+            display:block;
+            text-align:left;
+            font-size:13px;
+            font-weight:400;
+            padding-bottom:13px;
+            margin-top:-4px;
+
+
+        }
+
+        .dropdown-content a {
+            text-decoration:none;
+        }
+
+        .dropdown-div:hover .dropdown-content {
+            display:block;
+        }
+        .dropdown-div:hover .dropdown-arrow {
+            transform: rotate(360deg);
+        }
+
+        .alert-success-custom {
+            width:190px;
+            height:40px;
+            position:absolute;top: 100px;left:650px;
+            display:block;
+            background-color:rgba(30,255,50,0.2);
+            margin-bottom:20px;
+            margin-top:10px;
+            margin-left:5px;
+            backdrop-filter: blur(5px);
+            border-radius: 5px;
+            border: solid 2px green;
+            text-align: center;
+            padding: 5px;
+            transition: all
+        }
+
+        .alert-success-custom:active {
+            width:0px;
+            height:0px;
+        }
+        .message-danger {
+            text-align: center;
+            color: red;
+            padding:10px;
+        }
+
+
+    </style>
+
+    <title>{% block title %}Home{% endblock %}</title>
+</head>
+<body>
+{% block nav %}
+<div style="border-bottom:1px solid black; opacity:1;">
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom" style="background-color:white; padding-right:0px;">
+    <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbar"
+    >
+    </button>
+
+
+
+            <h4 style="margin-right:20px; text-shadow:5px 5px 7px rgba(0, 0, 0, 0.2); color:black; font-size:27px; margin-top:20px; margin-left:40px; text-align:left;">{% block header %}Spielwiese Kundenverwaltung{% endblock %}</h4>
+            <div class="navbar-nav">
+
+            <div class="container-search" style="s">
+                <form method="post"  id="search" action="{{ url_for('views.search') }}">
+                <input name="searchbar" class="search-bar-custom" type="search" placeholder="Nach Kunde suchen" aria-label="Search">
+                <input class="search-btn" style="margin-right:0px;" type="image" src="https://img.icons8.com/ios/72/search-client.png" id="search-btn"><span class="svg"></span></input>
+                </form>
+            </div>
+                <div class="nav-btns">
+                 <a class="nav-link-custom kunde_anlegen-transition" style=" text-decoration:none; color:black; black;margin-top: 20px; font-size:20px; margin-left:auto;" id="kunde_anlegen" href="/anlegen">Kunde anlegen </a>
+                <a class="nav-link-custom alle_kunden-transition" style=" text-decoration:none; color:black; margin-left:15px; margin-top: 20px; font-size:20px;" id="alle_kunden" href="/alle_kunden">Alle Kunden</a>
+                <a class="nav-link-custom abmelden-transition dropdown-ich" style=" text-decoration:none; color:black; margin-left:15px; margin-top: 20px; font-size:20px; margin-right:0px;" id="logout">Ich</a>
+                <div class="dropdown-div">
+                <input class="dropdown-arrow" type="image" src="https://img.icons8.com/ios/50/000000/expand-arrow--v1.png" id="dropdown">
+                    <div class="dropdown-content">
+                    <a href="/">Mitglieder</a>
+                    <a href="/alle_löschen">Alle Kunden löschen</a>
+                    <a href="/logout">Abmelden</a>
+                </div>
+
+                </div>
+                </div>
+
+        </div>
+    </nav>
+
+    </div>
+
+
+
+
+
+
+
+{% endblock %}
+
+<div class="container">{% block content %} {% endblock %}</div>
+<script
+        src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"
+></script>
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"
+></script>
+<script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"
+></script>
+<script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"
+></script>
+
+
+
+</body>
+</html>

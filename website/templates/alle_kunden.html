@@ -1,0 +1,180 @@
+{% extends "index.html" %} {% block title %}Alle Kunden{% endblock %}
+{% block nav %}
+<div style="border-bottom:1px solid black; opacity:1;">
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom" style="background-color:white; padding-right:0px;">
+    <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbar"
+    >
+    </button>
+
+
+
+            <h4 style="margin-right:20px; text-shadow:5px 5px 7px rgba(0, 0, 0, 0.2); color:black; font-size:27px; margin-top:20px; margin-left:40px; text-align:left;">{% block header %}Spielwiese Kundenverwaltung{% endblock %}</h4>
+            <div class="navbar-nav">
+
+            <div class="container-search" style="s">
+                <form method="post"  id="search" action="{{ url_for('views.search') }}">
+                <input name="searchbar" class="search-bar-custom" type="search" placeholder="Nach Kunde suchen" aria-label="Search">
+                <input class="search-btn" style="margin-right:0px;" type="image" src="https://img.icons8.com/ios/72/search-client.png" id="search-btn"><span class="svg"></span></input>
+                </form>
+            </div>
+
+                <div class="nav-btns">
+                 <a class="nav-link-custom kunde_anlegen-transition" style=" text-decoration:none; color:black; black;margin-top: 20px; font-size:20px; margin-left:auto;" id="kunde_anlegen" href="/anlegen">Kunde anlegen </a>
+                <a class="nav-link-custom alle_kunden-transition" style=" text-decoration:none; color:black; margin-left:15px; margin-top: 20px; font-size:20px;" id="alle_kunden" href="/alle_kunden">Alle Kunden</a>
+                <a class="nav-link-custom abmelden-transition dropdown-ich" style=" text-decoration:none; color:black; margin-left:15px; margin-top: 20px; font-size:20px; margin-right:0px;" id="logout">Ich</a>
+                <div class="dropdown-div">
+                <input class="dropdown-arrow" type="image" src="https://img.icons8.com/ios/50/000000/expand-arrow--v1.png" id="dropdown">
+                    <div class="dropdown-content">
+                    <a href="/">Mitglieder</a>
+                    <a href="/alle_löschen">Alle Kunden löschen</a>
+                    <a href="/logout">Abmelden</a>
+                </div>
+
+                </div>
+                </div>
+            {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %} {% for category, message in messages %} {% if category ==
+    'success' %}
+    <div class="alert-success-custom">
+    <a>{{ message }}</a>
+        </div>
+    {% else %}
+
+    {% endif %} {% endfor %} {% endif %} {% endwith %}
+        </div>
+    </nav>
+
+    </div>
+
+
+
+
+
+
+
+{% endblock %}
+{% block content %}
+<script src="alle_kunden_script.js"></script>
+<style>
+
+  .del {
+    width: 15%;
+    box-sizing: border-box;
+    padding: 3px;
+    margin-right: 10px;
+    }
+        .del_btn {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: rgba(124, 124, 124, 0);
+            border-radius: 1px;
+            color: rgb(202, 0, 0);
+            border-width: 1px;
+            padding: 3px;
+            border-color: rgb(202, 0, 0);
+            border-style: solid;
+            cursor: pointer;
+            font-weight: bold;
+            margin-right: 10px;
+            transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+              transition-property: color, background-color, border-color, box-shadow;
+              transition-duration: 0.15s, 0.15s, 0.15s, 0.15s;
+              transition-timing-function: ease-in-out, ease-in-out, ease-in-out, ease-in-out;
+              transition-delay: 0s, 0s, 0s, 0s;
+
+        }
+        .del_btn:hover {
+            background-color: rgb(202, 0, 0);
+            color: white;
+            box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+        }
+        .edit_btn {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: rgba(31, 147, 255, 0);
+            border-radius: 1px;
+            color: rgba(31, 147, 255, 1);
+            border-width: 1px;
+            padding: 3px;
+            border-color: rgba(31, 147, 255, 1);
+            border-style: solid;
+            cursor: pointer;
+            font-weight: bold;
+            transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+              transition-property: color, background-color, border-color, box-shadow;
+              transition-duration: 0.15s, 0.15s, 0.15s, 0.15s;
+              transition-timing-function: ease-in-out, ease-in-out, ease-in-out, ease-in-out;
+              transition-delay: 0s, 0s, 0s, 0s;
+            margin-top: 5px;
+
+        }
+        .edit_btn:hover {
+            background-color: rgba(31, 147, 255, 1);
+            color: white;
+            box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+        }
+        .row_data {
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          text-align: center;
+          margin-top: 20px;
+        }
+        .col-custom {
+
+        }
+</style>
+&nbsp;
+&#160;
+<ul class="list-group list-group-flush" id="kunden" xmlns="http://www.w3.org/1999/html"
+    xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+  <table style="margin-top:130px;" class="table table-bordered table1">
+    <thead>
+    <tr>
+      <th scope="col"><span class="col-custom">#</span></th>
+      <th scope="col"><span class="col-custom">Vorname</span></th>
+      <th scope="col"><span class="col-custom">Nachname</span></th>
+      <th scope="col"><span style="margin-left:90px;" class="col-custom">E-Mail</span></th>
+      <th scope="col"><span class="col-custom">Geburstdatum</span></th>
+      <th scope="col"><span class="col-custom">Erstellungsdatum</span></th>
+      <th scope="col"><span class="col-custom">ID</span></th>
+      <th scope="col"><span class="col-custom">Optionen</span></th>
+    </tr>
+    </thead>
+
+    {% set number = namespace(value=1) %}
+  {% for kunde in admin.customers %}
+<tbody>
+<tr>
+  <th scope="row"><span class="col-custom">{{ number.value }}</span></th>
+  {% set number.value = number.value + 1 %}
+  <td> <div class="row_data"  col_name="fname"> {{ kunde.firstName }} </div> </td>
+  <td> <div class="row_data"  col_name="lname"> {{ kunde.lastName }} </div> </td>
+  <td> <div class="row_data"  col_name="email"> {{ kunde.email }} </div> </td>
+  <td> <div class="row_data"  col_name="bdate"> {{ kunde.birthDate }} </div> </td>
+  <td> <div class="row_data"  col_name="cdate"> {{ kunde.creationDate }} </div> </td>
+  <td> <div class="row_data"  col_name="ID"> {{ kunde.id }} </div> </td>
+  <td>
+    <div>
+    <form method="POST" id="del_btn" action="{{ url_for('views.alle_kunden') }}" >
+      <button style="width:100px; display:block; margin:auto; margin-bottom:1px;" type="submit" class="del_btn" name="del" value="{{ kunde.id }}">Löschen</button>
+  </form>
+    <form method="POST" id="edit_btn" action="{{ url_for('views.kunde_bearbeiten') }}">
+      <button style="width:100px; display:block; margin:auto;" type="submit" class="edit_btn" name="edit" value="{{ kunde.id }}">Bearbeiten</button>
+    </form>
+      </div>
+  </td>
+
+
+</tr>
+
+</tbody>
+  {% endfor %}</ul>
+
+  </table>
+
+
+
+{% endblock %}
